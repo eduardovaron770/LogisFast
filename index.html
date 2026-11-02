@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogisFast - Sistema Logístico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="app-shell">
+        
+        <!-- PANTALLA 1: LOGIN -->
+        <div id="view-login" class="view">
+            <section class="auth-card">
+                <h1 class="brand-title">Logis<span>Fast</span></h1>
+                <p class="subtitle">Ingresa tus credenciales para continuar</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Usuario o Correo</label>
+                        <input type="text" name="username" placeholder="Ingresa tu usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <div class="form-options">
+                        <a href="#" id="recover-link">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <button type="submit" class="button button-primary">Ingresar</button>
+                </form>
+                <p class="auth-switch">¿Aún no tienes cuenta? <button id="go-register" class="text-button">Crear cuenta</button></p>
+            </section>
+        </div>
+
+        <!-- PANTALLA 2: REGISTRO -->
+        <div id="view-register" class="view hidden">
+            <section class="auth-card auth-card-wide">
+                <h2>Crear cuenta</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Nombres completos</label>
+                        <input type="text" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cédula</label>
+                        <input type="number" name="identity" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de nacimiento</label>
+                        <input type="date" name="birthdate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <select name="role" required>
+                            <option value="" disabled selected>Selecciona tu rol</option>
+                            <option value="admin">Administrador</option>
+                            <option value="repartidor">Repartidor</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <button type="submit" class="button button-primary">Registrar</button>
+                    </div>
+                </form>
+                <button id="back-login" class="text-button" style="margin-top: 20px;">← Volver al Login</button>
+            </section>
+        </div>
+
+        <!-- PANTALLA 3: MODAL DE ERROR -->
+        <div id="view-error" class="view hidden error-view">
+            <section class="error-modal">
+                <div class="error-icon">!</div>
+                <h2>Credenciales incorrectas</h2>
+                <p>El usuario o contraseña no son correctos.</p>
+                <button id="accept-error" class="button button-danger">Aceptar</button>
+            </section>
+        </div>
+
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

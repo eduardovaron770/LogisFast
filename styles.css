@@ -1,0 +1,47 @@
+:root {
+    --bg-main: #1E1E1E;
+    --bg-card: #2D2D2D;
+    --primary-blue: #0056B3;
+    --alert-red: #FF4757;
+    --text-light: #F4F6F9;
+    --text-muted: #A0A0A0;
+    --border-color: #444;
+    --radius: 4px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
+body { background-color: var(--bg-main); color: var(--text-light); }
+
+.app-shell { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+.view { width: 100%; display: grid; place-items: center; animation: fadeIn 0.3s ease; }
+.view.hidden { display: none; }
+
+.auth-card { width: min(100%, 400px); background: var(--bg-card); padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); }
+.auth-card-wide { width: min(100%, 500px); }
+
+.brand-title { text-align: center; margin-bottom: 5px; font-size: 32px; }
+.brand-title span { color: var(--primary-blue); }
+.subtitle { text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 14px; }
+h2 { margin-bottom: 20px; }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-muted); }
+input, select { width: 100%; padding: 12px; background: #252525; border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-light); outline: none; }
+input:focus, select:focus { border-color: var(--primary-blue); }
+
+.form-options { text-align: right; margin-bottom: 20px; }
+.form-options a { color: var(--primary-blue); text-decoration: none; font-size: 13px; }
+
+.button { width: 100%; padding: 14px; border: none; border-radius: var(--radius); color: white; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.button-primary { background: var(--primary-blue); }
+.button-primary:hover { background: #004494; }
+.button-danger { background: var(--alert-red); }
+.text-button { background: transparent; border: none; color: var(--primary-blue); cursor: pointer; font-weight: bold; }
+
+.auth-switch { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-muted); }
+
+.error-view { background: rgba(0,0,0,0.8); position: fixed; inset: 0; z-index: 100; }
+.error-modal { background: var(--bg-card); padding: 40px; text-align: center; border-radius: 8px; width: min(100%, 350px); border-top: 5px solid var(--alert-red); }
+.error-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,71,87,0.2); color: var(--alert-red); font-size: 30px; font-weight: bold; display: grid; place-items: center; margin: 0 auto 20px; border: 2px solid var(--alert-red); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
