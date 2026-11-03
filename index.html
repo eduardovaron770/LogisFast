@@ -1,81 +1,376 @@
-<!DOCTYPE html>
+<<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LogisFast: administración logística y rastreo público de paquetes."
+    />
     <title>LogisFast - Sistema Logístico</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
     <main class="app-shell">
-        
-        <!-- PANTALLA 1: LOGIN -->
-        <div id="view-login" class="view">
-            <section class="auth-card">
-                <h1 class="brand-title">Logis<span>Fast</span></h1>
-                <p class="subtitle">Ingresa tus credenciales para continuar</p>
-                <form id="login-form">
-                    <div class="form-group">
-                        <label>Usuario o Correo</label>
-                        <input type="text" name="username" placeholder="Ingresa tu usuario" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña</label>
-                        <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
-                    </div>
-                    <div class="form-options">
-                        <a href="#" id="recover-link">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    <button type="submit" class="button button-primary">Ingresar</button>
-                </form>
-                <p class="auth-switch">¿Aún no tienes cuenta? <button id="go-register" class="text-button">Crear cuenta</button></p>
-            </section>
-        </div>
+      <!-- FASE 1 / PANTALLA 1: LOGIN -->
+      <div id="view-login" class="view">
+        <div class="auth-layout">
+          <section class="auth-intro">
+            <a class="brand brand-light" href="#" data-view="view-login" aria-label="LogisFast">
+              <span class="brand-mark">LF</span>
+              <span>LogisFast</span>
+            </a>
+            <div>
+              <p class="eyebrow eyebrow-light">Logística sin fricción</p>
+              <h1>Entregas que avanzan contigo.</h1>
+              <p>
+                Administra paquetes y consulta envíos desde una plataforma segura, rápida y
+                confiable.
+              </p>
+            </div>
+            <p class="intro-footer">Operación logística en tiempo real</p>
+          </section>
 
-        <!-- PANTALLA 2: REGISTRO -->
-        <div id="view-register" class="view hidden">
-            <section class="auth-card auth-card-wide">
-                <h2>Crear cuenta</h2>
-                <form id="register-form">
-                    <div class="form-group">
-                        <label>Nombres completos</label>
-                        <input type="text" name="fullname" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Cédula</label>
-                        <input type="number" name="identity" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha de nacimiento</label>
-                        <input type="date" name="birthdate" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Rol</label>
-                        <select name="role" required>
-                            <option value="" disabled selected>Selecciona tu rol</option>
-                            <option value="admin">Administrador</option>
-                            <option value="repartidor">Repartidor</option>
-                        </select>
-                    </div>
-                    <div style="margin-top: 20px;">
-                        <button type="submit" class="button button-primary">Registrar</button>
-                    </div>
-                </form>
-                <button id="back-login" class="text-button" style="margin-top: 20px;">← Volver al Login</button>
-            </section>
+          <section class="auth-panel">
+            <div class="form-wrap">
+              <p class="eyebrow">Portal de empleados</p>
+              <h2>Bienvenido de nuevo</h2>
+              <p class="form-subtitle">Ingresa tus credenciales para continuar.</p>
+              <form id="login-form">
+                <div class="form-group">
+                  <label for="login-username">Usuario o Correo</label>
+                  <input
+                    id="login-username"
+                    type="text"
+                    name="username"
+                    placeholder="Ej. admin"
+                    autocomplete="username"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="login-password">Contraseña</label>
+                  <input
+                    id="login-password"
+                    type="password"
+                    name="password"
+                    placeholder="Ingresa tu contraseña"
+                    autocomplete="current-password"
+                  />
+                </div>
+                <div class="form-options">
+                  <a href="#" id="recover-link">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="button button-primary button-full">Ingresar</button>
+              </form>
+              <p class="auth-switch">
+                ¿Aún no tienes cuenta?
+                <button id="go-register" class="text-button" type="button">Crear cuenta</button>
+              </p>
+              <button id="go-public-tracking" class="tracking-link" type="button">
+                Rastrear un envío
+              </button>
+            </div>
+          </section>
         </div>
+      </div>
 
-        <!-- PANTALLA 3: MODAL DE ERROR -->
-        <div id="view-error" class="view hidden error-view">
-            <section class="error-modal">
-                <div class="error-icon">!</div>
-                <h2>Credenciales incorrectas</h2>
-                <p>El usuario o contraseña no son correctos.</p>
-                <button id="accept-error" class="button button-danger">Aceptar</button>
-            </section>
-        </div>
+      <!-- FASE 1 / PANTALLA 2: REGISTRO -->
+      <div id="view-register" class="view hidden">
+        <header class="simple-header">
+          <a class="brand" href="#" data-view="view-login">
+            <span class="brand-mark">LF</span>
+            <span>LogisFast</span>
+          </a>
+          <button class="text-button" type="button" data-view="view-login">Volver al ingreso</button>
+        </header>
+        <section class="auth-card auth-card-wide">
+          <p class="eyebrow">Nuevo perfil</p>
+          <h2>Crear cuenta</h2>
+          <p class="form-subtitle">Completa tus datos para solicitar acceso a LogisFast.</p>
+          <form id="register-form" class="form-grid">
+            <div class="form-group form-group-full">
+              <label for="register-name">Nombres completos</label>
+              <input id="register-name" type="text" name="fullname" required />
+            </div>
+            <div class="form-group">
+              <label for="register-identity">Cédula</label>
+              <input id="register-identity" type="number" name="identity" required />
+            </div>
+            <div class="form-group">
+              <label for="register-birthdate">Fecha de nacimiento</label>
+              <input id="register-birthdate" type="date" name="birthdate" required />
+            </div>
+            <div class="form-group form-group-full">
+              <label for="register-role">Rol</label>
+              <select id="register-role" name="role" required>
+                <option value="" disabled selected>Selecciona tu rol</option>
+                <option value="admin">Administrador</option>
+                <option value="repartidor">Repartidor</option>
+              </select>
+            </div>
+            <button type="submit" class="button button-primary form-group-full">Registrar</button>
+          </form>
+          <button id="back-login" class="back-link" type="button">← Volver al Login</button>
+        </section>
+      </div>
 
+      <!-- FASE 1 / PANTALLA 3: ERROR -->
+      <div id="view-error" class="view hidden error-view">
+        <section class="error-modal" role="alert" aria-live="assertive">
+          <div class="error-icon">!</div>
+          <p class="eyebrow eyebrow-light">No pudimos ingresar</p>
+          <h2>Credenciales incorrectas</h2>
+          <p>Debes ingresar tu usuario y contraseña para continuar.</p>
+          <button id="accept-error" class="button button-light" type="button">Aceptar</button>
+        </section>
+      </div>
+
+      <!-- FASE 2 / PANTALLA 4: DASHBOARD ADMINISTRATIVO -->
+      <div id="view-dashboard" class="view hidden">
+        <header class="app-header">
+          <a class="brand" href="#" data-view="view-dashboard">
+            <span class="brand-mark">LF</span>
+            <span>LogisFast</span>
+          </a>
+          <div class="header-actions">
+            <button id="new-shipment" class="button button-primary" type="button">
+              <span aria-hidden="true">+</span> Nuevo Envío
+            </button>
+            <button id="logout" class="button button-secondary" type="button">Cerrar Sesión</button>
+          </div>
+        </header>
+
+        <section class="dashboard-content">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Centro de operaciones</p>
+              <h1>Dashboard Logístico</h1>
+            </div>
+            <p id="dashboard-date"></p>
+          </div>
+
+          <div class="summary-grid">
+            <article class="summary-card">
+              <div>
+                <p>Envíos activos</p>
+                <strong id="active-shipments">45</strong>
+              </div>
+              <span class="summary-detail">+8 hoy</span>
+            </article>
+            <article class="summary-card">
+              <div>
+                <p>Entregas completadas</p>
+                <strong>128</strong>
+              </div>
+              <span class="summary-detail">94% a tiempo</span>
+            </article>
+          </div>
+
+          <section class="table-card">
+            <div class="section-heading">
+              <div>
+                <h2>Equipo de repartidores</h2>
+                <p>Actividad y carga asignada en tiempo real.</p>
+              </div>
+              <span class="count-badge">3 activos</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Repartidor</th>
+                    <th>Zona</th>
+                    <th>Entregas asignadas</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span class="courier-cell"
+                        ><span class="avatar">CM</span>Carlos Mendoza</span
+                      >
+                    </td>
+                    <td>Norte</td>
+                    <td>18</td>
+                    <td><span class="status status-route">En ruta</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="courier-cell"
+                        ><span class="avatar">MR</span>María Rodríguez</span
+                      >
+                    </td>
+                    <td>Centro</td>
+                    <td>12</td>
+                    <td><span class="status status-available">Disponible</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="courier-cell"><span class="avatar">JR</span>José Ramírez</span>
+                    </td>
+                    <td>Sur</td>
+                    <td>15</td>
+                    <td><span class="status status-route">En ruta</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <!-- FASE 2 / PANTALLA 5: ASIGNACIÓN -->
+      <div id="view-assign" class="view hidden">
+        <header class="app-header">
+          <a class="brand" href="#" data-view="view-dashboard">
+            <span class="brand-mark">LF</span>
+            <span>LogisFast</span>
+          </a>
+          <span class="header-context">Administración</span>
+        </header>
+
+        <section class="assign-content">
+          <button id="back-dashboard" class="back-link" type="button">
+            ← Volver al dashboard
+          </button>
+          <div class="assignment-card">
+            <div class="section-heading assignment-heading">
+              <div>
+                <p class="eyebrow">Nuevo envío</p>
+                <h1>Asignación de paquete</h1>
+                <p>Registra los datos del destinatario y elige un repartidor.</p>
+              </div>
+              <span class="step-badge">Paso único</span>
+            </div>
+            <form id="assign-form" class="form-grid">
+              <div class="form-group form-group-full">
+                <label for="package-name">Nombre del destinatario</label>
+                <input
+                  id="package-name"
+                  name="name"
+                  type="text"
+                  placeholder="Ej. Andrea Martínez"
+                  required
+                />
+              </div>
+              <div class="form-group form-group-full">
+                <label for="package-address">Dirección de entrega</label>
+                <input
+                  id="package-address"
+                  name="address"
+                  type="text"
+                  placeholder="Calle, número y referencia"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="package-weight">Peso (kg)</label>
+                <input
+                  id="package-weight"
+                  name="weight"
+                  type="number"
+                  min="0.1"
+                  step="0.1"
+                  placeholder="0.0"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="package-courier">Repartidor</label>
+                <select id="package-courier" name="courier" required>
+                  <option value="" disabled selected>Selecciona un repartidor</option>
+                  <option value="Carlos Mendoza">Carlos Mendoza</option>
+                  <option value="María Rodríguez">María Rodríguez</option>
+                  <option value="José Ramírez">José Ramírez</option>
+                </select>
+              </div>
+              <div class="form-actions form-group-full">
+                <button id="cancel-assignment" class="button button-secondary" type="button">
+                  Cancelar
+                </button>
+                <button class="button button-primary" type="submit">Crear y Asignar</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <!-- FASE 2 / PANTALLA 6: RASTREO PÚBLICO -->
+      <div id="view-tracking" class="view hidden">
+        <header class="app-header">
+          <a class="brand" href="#" data-view="view-tracking">
+            <span class="brand-mark">LF</span>
+            <span>LogisFast</span>
+          </a>
+          <button id="employee-access" class="button button-secondary" type="button">
+            Acceso Empleados
+          </button>
+        </header>
+
+        <section class="tracking-content">
+          <div class="tracking-hero">
+            <p class="eyebrow">Rastreo público</p>
+            <h1>¿Dónde está tu paquete?</h1>
+            <p>Ingresa el número de guía para consultar su recorrido y estado actual.</p>
+            <form id="tracking-form" class="search-form">
+              <label class="sr-only" for="tracking-number">Número de guía</label>
+              <input
+                id="tracking-number"
+                name="guide"
+                type="text"
+                placeholder="Ej. LF-2024-08319"
+              />
+              <button class="button button-primary" type="submit">Buscar</button>
+            </form>
+            <p id="tracking-message" class="tracking-message" aria-live="polite"></p>
+          </div>
+
+          <section id="tracking-result" class="tracking-card">
+            <div class="shipment-meta">
+              <div>
+                <span>Número de guía</span>
+                <strong id="result-guide">LF-2024-08319</strong>
+              </div>
+              <span class="status status-route">En tránsito</span>
+            </div>
+            <ol class="timeline">
+              <li class="timeline-item timeline-complete">
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div>
+                  <h2>En bodega</h2>
+                  <p>Paquete recibido en el centro logístico.</p>
+                  <time>22 May · 08:45</time>
+                </div>
+              </li>
+              <li class="timeline-item timeline-active">
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div>
+                  <h2>En tránsito</h2>
+                  <p>Tu envío está en camino a la dirección de entrega.</p>
+                  <time>23 May · 14:20</time>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div>
+                  <h2>Entregado</h2>
+                  <p>Entrega confirmada por el destinatario.</p>
+                  <time>Pendiente</time>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </section>
+      </div>
     </main>
-    <script src="app.js"></script>
-</body>
+
+    <script type="module" src="/app.js"></script>
+  </body>
 </html>
