@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -30,7 +30,8 @@
               <p class="eyebrow eyebrow-light">Logística sin fricción</p>
               <h1>Entregas que avanzan contigo.</h1>
               <p>
-                Administra paquetes y consulta envíos desde una plataforma segura, rápida y confiable.
+                Administra paquetes y consulta envíos desde una plataforma segura, rápida y
+                confiable.
               </p>
             </div>
             <p class="intro-footer">Operación logística en tiempo real</p>
@@ -106,6 +107,41 @@
               <input id="register-birthdate" type="date" name="birthdate" required />
             </div>
             <div class="form-group form-group-full">
+              <label for="register-email">Correo electrónico</label>
+              <input
+                id="register-email"
+                type="email"
+                name="email"
+                placeholder="nombre@correo.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="register-password">Contraseña</label>
+              <input
+                id="register-password"
+                type="password"
+                name="password"
+                placeholder="Mínimo 6 caracteres"
+                minlength="6"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="register-password-confirm">Confirmar contraseña</label>
+              <input
+                id="register-password-confirm"
+                type="password"
+                name="passwordConfirm"
+                placeholder="Repite tu contraseña"
+                minlength="6"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <div class="form-group form-group-full">
               <label for="register-role">Rol</label>
               <select id="register-role" name="role" required>
                 <option value="" disabled selected>Selecciona tu rol</option>
@@ -113,6 +149,7 @@
                 <option value="repartidor">Repartidor</option>
               </select>
             </div>
+            <p id="register-message" class="register-message form-group-full" aria-live="polite"></p>
             <button type="submit" class="button button-primary form-group-full">Registrar</button>
           </form>
           <button id="back-login" class="back-link" type="button">← Volver al Login</button>
@@ -192,7 +229,9 @@
                 <tbody>
                   <tr>
                     <td>
-                      <span class="courier-cell"><span class="avatar">CM</span>Carlos Mendoza</span>
+                      <span class="courier-cell"
+                        ><span class="avatar">CM</span>Carlos Mendoza</span
+                      >
                     </td>
                     <td>Norte</td>
                     <td>18</td>
@@ -200,7 +239,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <span class="courier-cell"><span class="avatar">MR</span>María Rodríguez</span>
+                      <span class="courier-cell"
+                        ><span class="avatar">MR</span>María Rodríguez</span
+                      >
                     </td>
                     <td>Centro</td>
                     <td>12</td>
@@ -247,15 +288,35 @@
             <form id="assign-form" class="form-grid">
               <div class="form-group form-group-full">
                 <label for="package-name">Nombre del destinatario</label>
-                <input id="package-name" name="name" type="text" placeholder="Ej. Andrea Martínez" required />
+                <input
+                  id="package-name"
+                  name="name"
+                  type="text"
+                  placeholder="Ej. Andrea Martínez"
+                  required
+                />
               </div>
               <div class="form-group form-group-full">
                 <label for="package-address">Dirección de entrega</label>
-                <input id="package-address" name="address" type="text" placeholder="Calle, número y referencia" required />
+                <input
+                  id="package-address"
+                  name="address"
+                  type="text"
+                  placeholder="Calle, número y referencia"
+                  required
+                />
               </div>
               <div class="form-group">
                 <label for="package-weight">Peso (kg)</label>
-                <input id="package-weight" name="weight" type="number" min="0.1" step="0.1" placeholder="0.0" required />
+                <input
+                  id="package-weight"
+                  name="weight"
+                  type="number"
+                  min="0.1"
+                  step="0.1"
+                  placeholder="0.0"
+                  required
+                />
               </div>
               <div class="form-group">
                 <label for="package-courier">Repartidor</label>
@@ -296,7 +357,12 @@
             <p>Ingresa el número de guía para consultar su recorrido y estado actual.</p>
             <form id="tracking-form" class="search-form">
               <label class="sr-only" for="tracking-number">Número de guía</label>
-              <input id="tracking-number" name="guide" type="text" placeholder="Ej. LF-2024-08319" />
+              <input
+                id="tracking-number"
+                name="guide"
+                type="text"
+                placeholder="Ej. LF-2024-08319"
+              />
               <button class="button button-primary" type="submit">Buscar</button>
             </form>
             <p id="tracking-message" class="tracking-message" aria-live="polite"></p>
@@ -339,8 +405,308 @@
           </section>
         </section>
       </div>
+
+      <!-- FASE 3 / PANTALLA 7: RECUPERACIÓN DE CLAVE -->
+      <div id="view-recover" class="view hidden">
+        <header class="simple-header">
+          <a class="brand" href="#" data-view="view-login">
+            <span class="brand-mark">LF</span>
+            <span>LogisFast</span>
+          </a>
+        </header>
+        <section class="auth-card recover-card">
+          <p class="eyebrow">Seguridad de cuenta</p>
+          <h2>Recuperar Acceso</h2>
+          <p class="form-subtitle">
+            Ingresa el correo asociado a tu cuenta y te enviaremos las instrucciones.
+          </p>
+          <form id="recover-form">
+            <div class="form-group">
+              <label for="recover-email">Correo electrónico</label>
+              <input
+                id="recover-email"
+                name="email"
+                type="email"
+                placeholder="nombre@correo.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <p id="recover-message" class="form-message" aria-live="polite"></p>
+            <button class="button button-primary button-full" type="submit">Enviar Enlace</button>
+          </form>
+          <button id="recover-back-login" class="back-link" type="button">← Volver al Login</button>
+        </section>
+      </div>
+
+      <!-- FASE 3 / PANTALLA 8: ENTREGAS DEL REPARTIDOR -->
+      <div id="view-courier-deliveries" class="view courier-view hidden">
+        <header class="courier-header">
+          <div>
+            <p class="courier-greeting">Buenos días,</p>
+            <h1>Mis Entregas Hoy</h1>
+          </div>
+          <span class="courier-avatar" aria-label="Perfil de repartidor">JR</span>
+        </header>
+
+        <section class="courier-content">
+          <label class="sr-only" for="delivery-search">Buscar entrega</label>
+          <div class="courier-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6"></circle>
+              <path d="m16 16 4 4"></path>
+            </svg>
+            <input
+              id="delivery-search"
+              type="search"
+              placeholder="Buscar por guía o destino"
+              autocomplete="off"
+            />
+          </div>
+          <div class="delivery-summary">
+            <span><strong id="pending-count">3</strong> pendientes</span>
+            <span class="route-badge">Ruta Centro</span>
+          </div>
+
+          <div id="delivery-list" class="delivery-list">
+            <article class="delivery-card" data-guide="LF-2024-08319" data-address="Av. Central 458">
+              <div class="delivery-card-top">
+                <span class="package-number">Paquete 01</span>
+                <span class="delivery-status">Siguiente</span>
+              </div>
+              <strong>LF-2024-08319</strong>
+              <p>Av. Central 458, Edificio Nova</p>
+              <button class="button button-primary route-button" type="button">Ver Ruta</button>
+            </article>
+            <article class="delivery-card" data-guide="LF-2024-08402" data-address="Calle Robles 120">
+              <div class="delivery-card-top">
+                <span class="package-number">Paquete 02</span>
+                <span class="delivery-distance">2.4 km</span>
+              </div>
+              <strong>LF-2024-08402</strong>
+              <p>Calle Robles 120, Casa 6</p>
+              <button class="button button-secondary route-button" type="button">Ver Ruta</button>
+            </article>
+            <article class="delivery-card" data-guide="LF-2024-08441" data-address="Plaza del Sol">
+              <div class="delivery-card-top">
+                <span class="package-number">Paquete 03</span>
+                <span class="delivery-distance">4.1 km</span>
+              </div>
+              <strong>LF-2024-08441</strong>
+              <p>Plaza del Sol, Local 24</p>
+              <button class="button button-secondary route-button" type="button">Ver Ruta</button>
+            </article>
+          </div>
+          <p id="delivery-empty" class="empty-state hidden">No encontramos entregas con ese dato.</p>
+        </section>
+
+        <nav class="bottom-nav" aria-label="Navegación del repartidor">
+          <button class="bottom-nav-item active" type="button" data-view="view-courier-deliveries">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16v12H4zM8 7V4h8v3M8 12h8"></path>
+            </svg>
+            <span>Entregas</span>
+          </button>
+          <button class="bottom-nav-item" type="button" data-view="view-courier-scan">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4M8 12h8"></path>
+            </svg>
+            <span>Escanear</span>
+          </button>
+          <button class="bottom-nav-item" type="button" data-view="view-courier-profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M5 21a7 7 0 0 1 14 0"></path>
+            </svg>
+            <span>Perfil</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- FASE 3 / PANTALLA 9: RUTA DEL REPARTIDOR -->
+      <div id="view-courier-route" class="view courier-view hidden">
+        <header class="courier-page-header">
+          <button class="icon-button" type="button" data-view="view-courier-deliveries" aria-label="Volver">
+            ←
+          </button>
+          <h1>Mi Ruta</h1>
+          <span class="header-spacer"></span>
+        </header>
+        <section class="route-content">
+          <div class="map-placeholder" aria-label="Mapa simulado de la ruta">
+            <span class="map-road map-road-one"></span>
+            <span class="map-road map-road-two"></span>
+            <span class="map-road map-road-three"></span>
+            <span class="map-pin map-pin-start">A</span>
+            <span class="map-pin map-pin-end">B</span>
+            <span class="map-route-line"></span>
+            <div class="map-eta"><strong>8 min</strong><span>2.4 km</span></div>
+          </div>
+          <div class="route-details">
+            <p class="eyebrow">Próxima parada</p>
+            <h2 id="route-guide">LF-2024-08319</h2>
+            <p id="route-address">Av. Central 458, Edificio Nova</p>
+            <div class="route-actions">
+              <button id="report-problem" class="button button-secondary" type="button">
+                Reportar Problema
+              </button>
+              <button id="confirm-delivery" class="button button-primary confirm-button" type="button">
+                Confirmar Entrega
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- FASE 3 / PANTALLA 10: ESCÁNER -->
+      <div id="view-courier-scan" class="view courier-view hidden">
+        <header class="courier-page-header">
+          <span class="header-spacer"></span>
+          <h1>Escáner</h1>
+          <span class="header-spacer"></span>
+        </header>
+        <section class="scanner-content">
+          <div class="scanner-copy">
+            <p class="eyebrow">Registro rápido</p>
+            <h2>Escanea la guía</h2>
+            <p>Alinea el código del paquete dentro del marco.</p>
+          </div>
+          <div class="scanner-frame" aria-label="Área simulada de cámara">
+            <span class="scanner-corner corner-top-left"></span>
+            <span class="scanner-corner corner-top-right"></span>
+            <span class="scanner-corner corner-bottom-left"></span>
+            <span class="scanner-corner corner-bottom-right"></span>
+            <span class="scanner-laser"></span>
+            <span class="scanner-label">Cámara activa</span>
+          </div>
+          <button id="manual-entry-toggle" class="button button-secondary manual-button" type="button">
+            Ingresar manualmente
+          </button>
+          <form id="manual-entry-form" class="manual-entry hidden">
+            <label for="manual-guide">Número de guía</label>
+            <div>
+              <input id="manual-guide" type="text" placeholder="LF-2024-00000" required />
+              <button class="button button-primary" type="submit">Registrar</button>
+            </div>
+          </form>
+          <p id="scan-message" class="form-message" aria-live="polite"></p>
+        </section>
+
+        <nav class="bottom-nav" aria-label="Navegación del repartidor">
+          <button class="bottom-nav-item" type="button" data-view="view-courier-deliveries">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16v12H4zM8 7V4h8v3M8 12h8"></path>
+            </svg>
+            <span>Entregas</span>
+          </button>
+          <button class="bottom-nav-item active" type="button" data-view="view-courier-scan">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4M8 12h8"></path>
+            </svg>
+            <span>Escanear</span>
+          </button>
+          <button class="bottom-nav-item" type="button" data-view="view-courier-profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M5 21a7 7 0 0 1 14 0"></path>
+            </svg>
+            <span>Perfil</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- FASE 3 / PANTALLA 11: REPORTE DE PROBLEMA -->
+      <div id="view-courier-report" class="view courier-view hidden">
+        <header class="courier-page-header">
+          <button class="icon-button" type="button" data-view="view-courier-route" aria-label="Volver">←</button>
+          <h1>Reportar Problema</h1>
+          <span class="header-spacer"></span>
+        </header>
+        <section class="report-content">
+          <div class="report-package">
+            <span>Paquete seleccionado</span>
+            <strong id="report-guide">LF-2024-08319</strong>
+          </div>
+          <form id="report-form">
+            <div class="form-group">
+              <label for="report-reason">Motivo de no entrega</label>
+              <select id="report-reason" name="reason" required>
+                <option value="" disabled selected>Selecciona un motivo</option>
+                <option value="Ausente">Destinatario ausente</option>
+                <option value="Dirección incorrecta">Dirección incorrecta</option>
+                <option value="Acceso restringido">Acceso restringido</option>
+                <option value="Paquete dañado">Paquete dañado</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="report-comments">Comentarios</label>
+              <textarea
+                id="report-comments"
+                name="comments"
+                rows="5"
+                placeholder="Describe brevemente lo ocurrido"
+              ></textarea>
+            </div>
+            <input id="report-photo" class="hidden" type="file" accept="image/*" capture="environment" />
+            <button id="attach-photo" class="button button-secondary photo-button" type="button">
+              Adjuntar Foto
+            </button>
+            <p id="photo-name" class="photo-name">No se ha adjuntado ninguna foto.</p>
+            <button class="button button-primary button-full" type="submit">Registrar Novedad</button>
+          </form>
+        </section>
+      </div>
+
+      <!-- FASE 3 / PANTALLA 12: PERFIL DEL REPARTIDOR -->
+      <div id="view-courier-profile" class="view courier-view hidden">
+        <header class="courier-page-header">
+          <span class="header-spacer"></span>
+          <h1>Mi Perfil</h1>
+          <span class="header-spacer"></span>
+        </header>
+        <section class="profile-content">
+          <div class="profile-identity">
+            <span class="profile-avatar">JR</span>
+            <h2>José Ramírez</h2>
+            <p>Repartidor · Zona Centro</p>
+            <span class="profile-status">Turno activo</span>
+          </div>
+          <dl class="profile-data">
+            <div><dt>Identificación</dt><dd>0923456781</dd></div>
+            <div><dt>Correo</dt><dd>j.ramirez@logisfast.com</dd></div>
+            <div><dt>Vehículo</dt><dd>Moto · LF-024</dd></div>
+            <div><dt>Entregas completadas</dt><dd id="profile-deliveries">18</dd></div>
+          </dl>
+          <button id="courier-logout" class="button button-danger button-full" type="button">
+            Cerrar Sesión
+          </button>
+        </section>
+
+        <nav class="bottom-nav" aria-label="Navegación del repartidor">
+          <button class="bottom-nav-item" type="button" data-view="view-courier-deliveries">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16v12H4zM8 7V4h8v3M8 12h8"></path>
+            </svg>
+            <span>Entregas</span>
+          </button>
+          <button class="bottom-nav-item" type="button" data-view="view-courier-scan">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4M8 12h8"></path>
+            </svg>
+            <span>Escanear</span>
+          </button>
+          <button class="bottom-nav-item active" type="button" data-view="view-courier-profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M5 21a7 7 0 0 1 14 0"></path>
+            </svg>
+            <span>Perfil</span>
+          </button>
+        </nav>
+      </div>
     </main>
 
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="/app.js"></script>
   </body>
 </html>
